@@ -1,5 +1,3 @@
-from inventory import Inv
-from inventory import Item
 class Room():
 
     def __init__(self, room_name):
@@ -10,12 +8,12 @@ class Room():
     def set_description(self, room_description):
         self.description = room_description
 
-    def loot_inv(self):
-        name_dict = {}        
-        inv_name = self.name.append(" Loot")
-        name_dict['inv_name'] = inv_name
-        name_dict['inv_name'] = Inv(self, inv_name, 3, 'Loot')
-        #add items and stuff
+    #def loot_inv(self):
+        #name_dict = {}        
+        #inv_name = self.name.append(" Loot")
+        #name_dict['inv_name'] = inv_name
+        #name_dict['inv_name'] = Inv(self, inv_name, 3, 'Loot')
+        #get object names working, add items and stuff
     def get_description(self):
         return self.description
 

@@ -1,6 +1,4 @@
 from room import Room
-from inventory import Inv
-from inventory import Item
 
 kitchen = Room("Kitchen")
 kitchen.set_description("A dank and dirty room buzzing with flies.")
@@ -22,10 +20,12 @@ while True:
 
     print("\n")
     current_room.get_details()
-    print("What do you want to call the {}?".format(current_room.get_name))
+    current_name = current_room.get_name()
+    print("What do you want to call the {}?".format(current_name))
     new_room_name = input("> ")
     current_room.set_name(new_room_name)
-    print("The name has been changed to {}.".format(current_room.get_name))
+    current_name = current_room.get_name()
+    print("The name has been changed to {}.".format(current_name))
     print("\n")
     current_room.get_details()    
     command = input("> ")
