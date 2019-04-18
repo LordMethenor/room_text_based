@@ -1,13 +1,21 @@
+from inventory import Inv
+from inventory import Item
 class Room():
 
     def __init__(self, room_name):
         self.name = room_name
         self.description = None
         self.linked_rooms = {}
-        self.room_loot
+        self.room_loot = {}
     def set_description(self, room_description):
         self.description = room_description
 
+    def loot_inv(self):
+        name_dict = {}        
+        inv_name = self.name.append(" Loot")
+        name_dict['inv_name'] = inv_name
+        name_dict['inv_name'] = Inv(self, inv_name, 3, 'Loot')
+        #add items and stuff
     def get_description(self):
         return self.description
 
@@ -41,4 +49,5 @@ class Room():
             return self.linked_rooms[direction]
         else:
             print("You can't go that way. ")
-            return self
+            return(self)
+        
