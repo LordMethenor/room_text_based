@@ -12,7 +12,7 @@ class Inv():
     def spawn_item(self, item_ID):
         #I think the best way to do inventories is probably lists of objects, not dictionaries. I researched dictionaries, and it seems they are good at storing multiple pieces of info about a singular item, but I think a class would better accomplish this for generation, sorted from an ITEM class in MELEE, RANGED, TRADE, ARMOR, etc subclasses)
         #Item ID is how objects of the item class are designated and generated. We use the item class and subclasses to generate them and then use these unique random identifiers to call them, as opposed to storing and transferring dictionaries 
-        items_counter = 0
+        item_counter = 0
         for i in range(len(self.items)):
             items_ID = self.items[i]
             item_counter += items_ID.get_value()
@@ -40,7 +40,7 @@ class Inv():
             if command.isdigit():
                 command = int(command)
             else:
-                null
+                pass
             item_ID = self.items[command]
             print(item_ID.get_description)
         except:
@@ -61,7 +61,7 @@ class Item():
     def get_description(self):
         description = self.dictnry['description']
         return description
-    
+
     def get_name(self):
         return self.name
 class Normalize():
@@ -79,7 +79,7 @@ class Normalize():
 
     def draw_norm(self):
         draw_loop = True
-        while draw_loop = True:
+        while draw_loop == True:
             output_return = numpy.random.normal(loc=self.mean, scale=self.deviation, size=None)
             if output_return >= self.rarity:
                 draw_loop = False
@@ -91,5 +91,5 @@ class Rarity_Check(Normalize):
     def __init__(self, mean, alt_deviation, check_value):
         Normalize.__init__(self, mean, alt_deviation)
         self.value = check_value
-    def check_rarity():
-        return scipy.stats.norm(self.mean, self.deviation).cdf(check_value) 
+    def check_rarity(self):
+        return scipy.stats.norm(self.mean, self.deviation).cdf(self.value)
