@@ -1,6 +1,9 @@
 import numpy
 import scipy   
 from room import Room
+from normal import Normalize
+from normal import Rarity_Check
+
 class Inv():
 
     def __init__(self, inv_name, capacity, inv_type):
@@ -50,12 +53,34 @@ class Item():
     #in the future, the general item will be broken into subclasses, like melee, food, armor, etc)
     #item_DICT can be used to add predetermined attributes. Some, like name, will be defined differently in different items. This is basically a flexible catch-all
     #rarity will
-    def __init__(self, item_value, item_ID, item_Name, item_Rarity):
+    def __init__(self, item_space, item_value, item_dev, item_ID, item_name, item_unit, item_rarity):
         #random normality, fix all item pulling stuff
-        numpy.random.normal(loc=0.0, scale=1.0, size=None)
-    def get_the_basics(self):
-        rarity = self.dictnry['rarity']
-        spec = self.dictnry['spec']
+        self.ID = item_ID
+        self.mean = item_value
+        self.name = item_name
+        self.space = item_space
+        #will be removed once subclasses are implemented.
+        self.unit = item_unit
+        try:
+            self.dev = item_dev
+        except:
+            self.dev = 'null'
+        try:
+            self.rarity = item_rarity
+        except:
+            self.rarity = 'null'
+
+        normal_spec = Normalize.(mean = self.mean, alt_deviation = self.dev, minimum = self.rarity)
+        self.spec = normal_spec
+        try:
+            if self.rarity >= 0:
+                pass
+            else:
+                pass
+        except:
+            rarity_check = Rarity_Check(self, mean = self.mean, alt_deviation = self.dev, check_spec = self.spec)
+            
+    def get_the_basics:
         return "{} ({}, {})".format(self.name, spec, rarity)
         
     def get_description(self):
@@ -64,32 +89,3 @@ class Item():
     
     def get_name(self):
         return self.name
-class Normalize():
-    # this is how random values are generated. They are generated on a normal distribution, with a mean as the 'base' spec and the standard deviation set to 15% of the mean by default but changeable. If an item with a certain rarity predetermined is generated, the returned result will specifically obey that. Values less than 0 are also eliminated.
-    def __init__(self, mean, alt_deviation, minimum, rarity):
-        self.mean = mean
-        try:
-            self.rarity = rarity
-        except:
-            self.rarity = 0
-        try:
-            self.devation = alt_deviation
-        except:
-            self.deviation = .15 * self.mean
-
-    def draw_norm(self):
-        draw_loop = True
-        while draw_loop = True:
-            output_return = numpy.random.normal(loc=self.mean, scale=self.deviation, size=None)
-            if output_return >= self.rarity:
-                draw_loop = False
-            else:
-                pass
-        return output_return
-class Rarity_Check(Normalize):
-
-    def __init__(self, mean, alt_deviation, check_value):
-        Normalize.__init__(self, mean, alt_deviation)
-        self.value = check_value
-    def check_rarity():
-        return scipy.stats.norm(self.mean, self.deviation).cdf(check_value) 
