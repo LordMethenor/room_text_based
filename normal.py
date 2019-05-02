@@ -1,8 +1,6 @@
-import numpy
-import scipy   
-from room import Room
 from inventory import Inv
 from inventory import Item
+from room import Room
 
 class Normalize():
     # this is how random values are generated. They are generated on a normal distribution, with a mean as the 'base' spec and the standard deviation set to 15% of the mean by default but changeable. If an item with a certain rarity predetermined is generated, the returned result will specifically obey that. Values less than 0 are also eliminated.
